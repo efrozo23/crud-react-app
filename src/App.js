@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import NavigationBar from './Components/NavigationBar';
+import { Container, Row, Col } from 'react-bootstrap';
+import Welcome from './Components/Welcome';
+import Footer from './Components/Footer';
+import AddUser from './Components/AddUser';
+import ListUser from './Components/ListUser';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+export class App extends Component {
+
+  marginTop = {
+    margin: "20px"
+  };
+
+  
+
+  render() {
+
+    return (
+      <Router>
+        <NavigationBar />
+        <Container>
+          <Row>
+            <Col lg={12} style={this.marginTop}>
+              <Switch>
+                <Route path="/" exact component={Welcome} />
+                <Route path="/add" exact component={AddUser} />
+                <Route path="/list" exact component={ListUser} />
+              </Switch>
+            </Col>
+          </Row>
+        </Container>
+        <Footer />
+        
+      </Router>
+    );
+  }
 }
 
 export default App;
